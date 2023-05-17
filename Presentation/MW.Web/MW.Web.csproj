@@ -11,4 +11,10 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\MW.Application\MW.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructre\MW.Infrastructre\MW.Infrastructre.csproj" />
+    <ProjectReference Include="..\..\Infrastructre\MW.Persistence\MW.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

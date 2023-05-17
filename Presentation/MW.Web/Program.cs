@@ -1,7 +1,10 @@
+using MW.Persistence.Utilities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddPersistenceServices();
 
 var app = builder.Build();
 
