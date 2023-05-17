@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\resources\images\common\" />
+    <Folder Include="wwwroot\resources\images\avatars\" />
   </ItemGroup>
 
   <ItemGroup>
