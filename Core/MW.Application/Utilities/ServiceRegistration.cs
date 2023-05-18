@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 using MW.Application.Interfaces.Services.Media;
 using MW.Application.Interfaces.Services.Messages;
+using MW.Application.Validations.Membership;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,13 @@ namespace MW.Application.Utilities
         {
             // Automapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            //FluentValidation
+            services.AddFluentValidation(x =>
+            {
+                x.DisableDataAnnotationsValidation = true;
+                x.RegisterValidatorsFromAssemblyContaining<UserAddModelValidator>();
+            });
         }
     }
 }
