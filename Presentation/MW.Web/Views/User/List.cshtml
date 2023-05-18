@@ -1,0 +1,65 @@
+﻿@model List<UserListModel>
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col d-flex justify-content-between">
+                <h2 class="page-title text-black">Kullanıcılar </h2>
+                <a href="/user/add" class="btn btn-info">
+                    Yeni Ekle
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table table-vcenter card-table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-black">Profil Resmi</th>
+                                    <th class="text-black">Ad</th>
+                                    <th class="text-black">Soyad</th>
+                                    <th class="text-black">Email</th>
+                                    <th class="text-black">Durum</th>
+                                    <th class="text-black">Oluşturulma Tarihi</th>
+                                    <th class="text-black">Aksiyon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr>
+                                        <td><img width="35" src="/resources/images/avatars/@user.AvatarImageName" /></td>
+                                        <td>@user.FirstName</td>
+                                        <td>@user.LastName</td>
+                                        <td>@user.Email</td>
+                                        <td>
+                                            @if (user.Active)
+                                            {
+                                                <i class="fa fa-check text-success" aria-hidden="true"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                                            }
+                                        </td>
+                                        <td>@user.CreatedOn</td>
+                                        <td>                                          
+                                            <a href="/user/update/@user.Id" class="btn btn-lime"><i class="fa fa-pen-to-square"></i></a>
+                                            <a href="javascript:;" onclick="deleteUser(@user.Id)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿@model UserCreateModel
+
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col d-flex justify-content-between">
+                <h2 class="page-title text-black">Kullanıcı Ekle</h2>
+            </div>
+            <form asp-action="Add" asp-controller="User" class="card">
+                <div class="card-body">
+                    <div class="row row-cards">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label required">Ad</label>
+                                <input asp-for="FirstName" type="text" class="form-control" placeholder="Ad" required>
+                                <div class="invalid-feedback" style="display:block;"><span asp-validation-for="FirstName"></span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3 ">
+                                <label class="form-label">Soyad</label>
+                                <input asp-for="LastName" type="text" class="form-control" placeholder="Soyad">
+                                <div class="invalid-feedback" style="display:block;"><span asp-validation-for="LastName"></span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label required">Email Adres</label>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Email">
+                                <div class="invalid-feedback" style="display:block;"><span asp-validation-for="Email"></span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label required">Şifre</label>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Şifre">
+                                <div class="invalid-feedback" style="display:block;"><span asp-validation-for="Password"></span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label required">Şifreyi Onayla</label>
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Şifreyi onayla">
+                                <div class="invalid-feedback" style="display:block;"><span asp-validation-for="ConfirmPassword"></span></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label class="form-label required ">Durum</label>
+                                <label class="form-check form-switch">
+                                    <input asp-for="Active" class="form-check-input" type="checkbox" checked="">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <div class="form-label">Profil Resmi</div>
+                                <input type="file" asp-for="AvatarImage" class="form-control">
+                                <div class="invalid-feedback" style="display:block;"><span asp-validation-for="AvatarImage"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-end">
+                    <button type="submit" class="btn btn-primary">Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/resources/js/membership.js"></script>
+}
