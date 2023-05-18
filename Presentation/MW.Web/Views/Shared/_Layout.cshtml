@@ -1,10 +1,42 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Warehouse</title>
+    <link href="~/theme/dist/css/tabler.min.css" rel="stylesheet" />
+    <link href="~/theme/dist/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="~/theme/dist/css/demo.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        @@import url('https://rsms.me/inter/inter.css');
+
+        :root {
+            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
+
+        body {
+            font-feature-settings: "cv03", "cv04", "cv11";
+        }
+    </style>
 </head>
 <body>
-    @RenderBody()
+    <script src="~/theme/dist/js/demo-theme.min.js"></script>
+    <div class="page">
+
+        @await Html.PartialAsync("_Header")
+        @await Html.PartialAsync("_Navbar")
+        <div class="page-wrapper">
+            @RenderBody()
+            @await Html.PartialAsync("_Footer")
+        </div>
+
+    </div>
+
+    <script src="~/theme/dist/js/tabler.min.js" defer></script>
+    <script src="~/theme/dist/js/demo.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
