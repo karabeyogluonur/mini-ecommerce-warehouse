@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MW.Application.Interfaces.Services.Media;
 using MW.Infrastructre.Services.Media;
+using MW.Application.Interfaces.Services.Messages;
+using MW.Infrastructre.Services.Messages;
 
 namespace MW.Infrastructre.Utilities
 {
@@ -16,6 +18,7 @@ namespace MW.Infrastructre.Utilities
         public static void AddInfrastructreServices(this IServiceCollection services)
         {
             services.AddTransient<IFileService, FileService>();
+            services.AddTransient<INotificationService,NotificationService>();
         }
     }
 }
