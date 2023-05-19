@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Core\MW.Application\MW.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructre\MW.Infrastructre\MW.Infrastructre.csproj" />
     <ProjectReference Include="..\..\Infrastructre\MW.Persistence\MW.Persistence.csproj" />

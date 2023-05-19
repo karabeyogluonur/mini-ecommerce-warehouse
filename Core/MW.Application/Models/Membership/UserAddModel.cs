@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MW.Application.Models.Membership
 {
-    public class UserCreateModel
+    public class UserAddModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

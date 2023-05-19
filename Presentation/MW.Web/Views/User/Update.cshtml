@@ -3,9 +3,18 @@
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
-            <div class="col d-flex justify-content-between">
-                <h2 class="page-title text-black">Kullanıcı Ekle</h2>
+            <div class="col">
+                <h2 class="page-title">
+                    Kullanıcı Güncelle
+                </h2>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body d-print-none">
+    <div class="container-xl">
+        <div class="row">
             <form asp-action="Update" asp-controller="User" class="card">
                 @Html.HiddenFor(user=>user.Id)
                 <div class="card-body">
@@ -19,7 +28,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 ">
-                                <label class="form-label">Soyad</label>
+                                <label class="form-label required">Soyad</label>
                                 <input asp-for="LastName" type="text" class="form-control" placeholder="Soyad">
                                 <div class="invalid-feedback" style="display:block;"><span asp-validation-for="LastName"></span></div>
                             </div>
@@ -31,33 +40,25 @@
                                 <div class="invalid-feedback" style="display:block;"><span asp-validation-for="Email"></span></div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label required">Şifre</label>
                                 <input asp-for="Password" type="password" class="form-control" placeholder="Şifre">
                                 <div class="invalid-feedback" style="display:block;"><span asp-validation-for="Password"></span></div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label required">Şifreyi Onayla</label>
                                 <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Şifreyi onayla">
                                 <div class="invalid-feedback" style="display:block;"><span asp-validation-for="ConfirmPassword"></span></div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="mb-3">
-                                <label class="form-label required ">Şifreyi Güncelle</label>
-                                <label class="form-check form-switch">
-                                    <input asp-for="Active" class="form-check-input" type="checkbox" checked="">
-                                </label>
-                            </div>
-                        </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label class="form-label required ">Durum</label>
+                                <label class="form-label ">Durum</label>
                                 <label class="form-check form-switch">
-                                    <input asp-for="Active" class="form-check-input" type="checkbox" checked="">
+                                    <input asp-for="Active" class="form-check-input" type="checkbox">
                                 </label>
                             </div>
                         </div>

@@ -33,7 +33,7 @@
                             <tbody>
                                 @foreach (var user in Model)
                                 {
-                                    <tr>
+                                    <tr itemid="@user.Id">
                                         <td><img width="35" src="/resources/images/avatars/@user.AvatarImageName" /></td>
                                         <td>@user.FirstName</td>
                                         <td>@user.LastName</td>
@@ -51,7 +51,7 @@
                                         <td>@user.CreatedOn</td>
                                         <td>                                          
                                             <a href="/user/update/@user.Id" class="btn btn-lime"><i class="fa fa-pen-to-square"></i></a>
-                                            <a href="javascript:;" onclick="deleteUser(@user.Id)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            <button onclick="deleteUser(@user.Id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 }
@@ -63,3 +63,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/resources/js/membership.js"></script>
+}

@@ -1,12 +1,21 @@
-﻿@model UserCreateModel
+﻿@model UserAddModel
 
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
-            <div class="col d-flex justify-content-between">
-                <h2 class="page-title text-black">Kullanıcı Ekle</h2>
+            <div class="col">
+                <h2 class="page-title">
+                    Kullanıcı Ekle
+                </h2>
             </div>
-            <form asp-action="Add" asp-controller="User" class="card">
+        </div>
+    </div>
+</div>
+
+<div class="page-body d-print-none">
+    <div class="container-xl">
+       <div class="row">
+            <form asp-action="Add" asp-controller="User" class="card" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="row row-cards">
                         <div class="col-md-6">
@@ -65,10 +74,6 @@
                     <button type="submit" class="btn btn-primary">Ekle</button>
                 </div>
             </form>
-        </div>
+       </div>
     </div>
 </div>
-
-@section Scripts {
-    <script src="~/resources/js/membership.js"></script>
-}

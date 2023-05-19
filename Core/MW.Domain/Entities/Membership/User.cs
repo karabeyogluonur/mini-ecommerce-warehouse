@@ -15,6 +15,8 @@ namespace MW.Domain.Entities.Membership
         public string PasswordHash { get; set; }
         public bool Active { get; set; }
         public bool Deleted { get; set; }
+        public string AvatarImageName { get; set; }
         public DateTime CreatedOn { get; set; }
+        
     }
 }

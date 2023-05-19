@@ -22,7 +22,10 @@ namespace MW.Persistence.Repositories.CustomRepositories
         }
         public async Task<int> AddAsync(User entity)
         {
-            var query = "INSERT INTO Users (FirstName, LastName, Email, PasswordHash, Active, Deleted, CreatedOn) VALUES (@FirstName, @LastName, @Email, @PasswordHash, @Active, @Deleted, @CreatedOn)" +
+            entity.CreatedOn = DateTime.Now;
+            entity.Deleted = false;
+
+            var query = "INSERT INTO Users (FirstName, LastName, Email, PasswordHash, Active, Deleted, AvatarImageName, CreatedOn) VALUES (@FirstName, @LastName, @Email, @PasswordHash, @Active, @Deleted, @AvatarImageName, @CreatedOn)" +
                     "SELECT CAST(SCOPE_IDENTITY() as int)";
 
             var parameters = new DynamicParameters();
@@ -32,6 +35,7 @@ namespace MW.Persistence.Repositories.CustomRepositories
             parameters.Add("PasswordHash", entity.PasswordHash, DbType.String);
             parameters.Add("Active", entity.Active, DbType.Boolean);
             parameters.Add("Deleted", entity.Deleted, DbType.Boolean);
+            parameters.Add("AvatarImageName", entity.AvatarImageName, DbType.String);
             parameters.Add("CreatedOn", entity.CreatedOn, DbType.DateTime2);
 
             using (var connection = _context.CreateConnection())
@@ -42,7 +46,7 @@ namespace MW.Persistence.Repositories.CustomRepositories
 
         public async Task<int> DeleteAsync(int id)
         {
-            var query = "UPDATE Users SET Deleted = 1 WHERE Id = @Id";
+            var query = "UPDATE Users SET Deleted = 1, Email = Email + '--DELETED', Active = 0 WHERE Id = @Id";
             using (var connection = _context.CreateConnection())
             {
                return await connection.ExecuteAsync(query, new { id });
@@ -59,12 +63,42 @@ namespace MW.Persistence.Repositories.CustomRepositories
             }
         }
 
+        public async Task<IReadOnlyList<User>> GetAllAsync(bool showDeactived = false, bool showDeleted = false)
+        {
+            var query = "SELECT * FROM Users ";
+            if (!showDeactived)
+                query = query + "WHERE Active = 0 ";
+
+            if (!showDeleted)
+            {
+                if (query.Contains("WHERE"))
+                    query = query + "&& Deleted = 0 ";
+                else
+                    query = query + "WHERE Deleted = 0 ";
+            }
+
+            using (var connection = _context.CreateConnection())
+            {
+                IEnumerable<User> users = await connection.QueryAsync<User>(query);
+                return users.ToList();
+            }
+        }
+
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            var query = "SELECT * FROM Users WHERE Email = @Email";
+            using (var connection = _context.CreateConnection())
+            {
+                return await connection.QuerySingleOrDefaultAsync<User>(query, new { email });
+            }
+        }
+
         public async Task<User> GetByIdAsync(int id)
         {
             var query = "SELECT * FROM Users WHERE Id = @Id";
             using (var connection = _context.CreateConnection())
             {
-                return await connection.QuerySingleAsync<User>(query, new { id });
+                return await connection.QuerySingleOrDefaultAsync<User>(query, new { id });
             }
         }
 
@@ -75,10 +109,9 @@ namespace MW.Persistence.Repositories.CustomRepositories
                 "LastName = @LastName," +
                 "Email = @Email," +
                 "PasswordHash = @PasswordHash," +
-                "Active = @Active " +
+                "Active = @Active," +
+                "AvatarImageName = @AvatarImageName " +
                 "WHERE Id = @Id";
-
-            Console.Write(query);
 
             var parameters = new DynamicParameters();
             parameters.Add("Id", entity.Id, DbType.Int32);
@@ -87,6 +120,7 @@ namespace MW.Persistence.Repositories.CustomRepositories
             parameters.Add("Email", entity.Email, DbType.String);
             parameters.Add("PasswordHash", entity.PasswordHash, DbType.String);
             parameters.Add("Active", entity.Active, DbType.Boolean);
+            parameters.Add("AvatarImageName", entity.AvatarImageName, DbType.String);
 
             using (var connection = _context.CreateConnection())
             {

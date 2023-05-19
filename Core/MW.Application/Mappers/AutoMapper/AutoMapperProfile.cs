@@ -13,7 +13,9 @@ namespace MW.Application.Mappers.AutoMapper
     {
         public AutoMapperProfile()
         {
-
+            CreateMap<UserUpdateModel, User>().ForMember(user=>user.AvatarImageName,opt=>opt.Ignore()).ReverseMap();
+            CreateMap<User, UserListModel>().ReverseMap();
+            CreateMap<User, UserAddModel>().ReverseMap();
         }
 
     }
