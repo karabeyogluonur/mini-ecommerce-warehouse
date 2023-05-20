@@ -24,3 +24,30 @@
             }
         })
 }
+
+function authentication() {
+
+    var email = $("#email").val();
+    var pass = $("#password").val();
+
+    if (email == "" || pass == "") {
+
+        Swal.fire("Lütfen email ve şifre alanlarını giriniz!", "", "info");
+    }
+    else {
+        axios.post("/auth/login", {
+            email: email,
+            password: pass
+        }).then(response => {
+            if (response.status == 200) {
+                Swal.fire("Giriş başarılı. Yönlendiriliyorsunuz!", "", "success");
+                setTimeout(function () { window.location = "/home/index"; }, 2000);
+            }
+            else {
+                Swal.fire(response.data, "", "info");
+            }
+        }).catch(error => {
+            Swal.fire(error.response.data, "", "error");
+        });
+    }
+}

@@ -1,0 +1,76 @@
+﻿@model LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Giriş Yap - MMW</title>
+    <link href="~/theme/dist/css/tabler.min.css" rel="stylesheet" />
+    <link href="~/theme/dist/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="~/theme/dist/css/demo.min.css" rel="stylesheet" />
+     <style>
+        @@import url('https://rsms.me/inter/inter.css');
+
+        :root {
+            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
+
+        body {
+            font-feature-settings: "cv03", "cv04", "cv11";
+        }
+    </style>
+</head>
+<body class=" d-flex flex-column">
+    <script src="~/theme/dist/js/demo-theme.min.js"></script>
+    <div class="page page-center">
+        <div class="container container-tight py-4">
+            <div class="text-center mb-4">
+            </div>
+            <div class="card card-md">
+                <div class="card-body">
+                    <h2 class="h2 text-center mb-4">HESABINA GİRİŞ YAP</h2>
+                    <form method="post" autocomplete="off" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input id="email" asp-for="Email" type="email" class="form-control" placeholder="Email adres" autocomplete="off">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">
+                                Şifre
+                                <span class="form-label-description">
+                                </span>
+                            </label>
+                            <div class="input-group input-group-flat">
+                                <input id="password" asp-for="Password" type="password" class="form-control" placeholder="Şifre" autocomplete="off">
+                                <span class="input-group-text">
+                                    <a href="#" class="link-secondary" title="Şifreyi göster" data-bs-toggle="tooltip">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-footer">
+                            <button type="button" onclick="authentication()" class="btn btn-primary w-100">Giriş Yap</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Libs JS -->
+    <!-- Tabler Core -->
+    <script src="~/theme/dist/js/tabler.min.js" defer></script>
+    <script src="~/theme/dist/js/demo.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/resources/js/membership.js"></script>
+</body>
+</html>
