@@ -10,5 +10,6 @@ namespace MW.Application.Utilities.Defaults
     {
         public static string CommonLocalPath => "resources\\images\\common";
         public static string AvatarImageLocalPath => "resources\\images\\avatars";
+        public static string ProductImageLocalPath => "resources\\images\\products";
     }
 }

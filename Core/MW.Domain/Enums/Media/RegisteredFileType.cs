@@ -8,6 +8,7 @@ namespace MW.Domain.Enums.Media
 {
     public enum RegisteredFileType
     {
-        AvatarImage
+        AvatarImage,
+        ProductImage
     }
 }

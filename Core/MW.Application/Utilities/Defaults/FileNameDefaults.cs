@@ -9,5 +9,6 @@ namespace MW.Application.Utilities.Defaults
     public static class FileNameDefaults
     {
         public static string AvatarImage => "default-avatar.jpg";
+        public static string ProductImage => "default-product.jpg";
     }
 }

@@ -14,12 +14,10 @@ namespace MW.Web.Controllers
     public class AuthController : BaseController
     {
         private readonly IUnitOfWork _unitOfWork;
-
         public AuthController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-
         public IActionResult Login()
         {
             if(HttpContext.User == null)
@@ -54,7 +52,6 @@ namespace MW.Web.Controllers
 
             return RedirectToAction("Login");
         }
-
         private async Task SignInAsync(User user)
         {
             var claims = new List<Claim>

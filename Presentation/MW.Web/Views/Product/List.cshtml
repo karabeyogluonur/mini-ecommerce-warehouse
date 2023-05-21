@@ -1,0 +1,112 @@
+﻿@model List<ProductListModel>
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col d-flex justify-content-between">
+                <h2 class="page-title text-black">Ürünler </h2>
+                <a href="/product/add" class="btn btn-info">
+                    Yeni Ekle
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table table-vcenter card-table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-black">Ürün Resmi</th>
+                                    <th class="text-black">Barcode</th>
+                                    <th class="text-black">Ad</th>
+                                    <th class="text-black">Alış Fiyat</th>
+                                    <th class="text-black">Satış Fiyat</th>
+                                    <th class="text-black">Stok Adet</th>
+                                    <th class="text-black">Durum</th>
+                                    <th class="text-black">Oluşturulma Tarihi</th>
+                                    <th class="text-black">Aksiyon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var product in Model)
+                                {
+                                    <tr itemid="@product.Id">
+                                        <td><img width="35" src="/resources/images/products/@product.ProductImageName" /></td>
+                                        <td>@product.Barcode</td>
+                                        <td>@product.Name</td>
+                                        <td>@product.PurchasePrice</td>
+                                        <td>@product.SalePrice</td>
+                                        <td class="product-stock">@product.Stock</td>
+                                        <td>
+                                            @if (product.Active)
+                                            {
+                                                <i class="fa fa-check text-success" aria-hidden="true"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                                            }
+                                        </td>
+                                        <td>@product.CreatedOn</td>
+                                        <td>
+                                            <button onclick="openAddStockModal(@product.Id)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-stock"><i class="fa fa-cubes"></i> </button>
+                                            <a href="/product/update/@product.Id" class="btn btn-lime"><i class="fa fa-pen-to-square"></i></a>
+                                            <button onclick="deleteProduct(@product.Id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-blur fade" id="modal-add-stock" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Stok Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="ProductId" value="">
+                <div class="col-lg-12">
+                <div class="mb-3">
+                    <label class="form-label">Adet</label>
+                    <input type="number" class="form-control" step="1" name="Quantity" placeholder="Girilecek stok adeti">
+                </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-3">
+                    <div>
+                        <label class="form-label">Açıklama</label>
+                        <textarea name="Comment" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                    Vazgeç
+                </a>
+                <a href="javascript:;" onclick="addStock()" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                    Stok Ekle
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/resources/js/catalog.js"></script>
+}

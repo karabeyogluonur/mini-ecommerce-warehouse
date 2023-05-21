@@ -16,6 +16,8 @@ namespace MW.Application.Utilities.Helpers
             {
                 case RegisteredFileType.AvatarImage:
                     return FilePathDefaults.AvatarImageLocalPath;
+                case RegisteredFileType.ProductImage:
+                    return FilePathDefaults.ProductImageLocalPath;
                 default:
                     return FilePathDefaults.CommonLocalPath;
             }
